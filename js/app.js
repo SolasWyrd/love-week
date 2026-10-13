@@ -11,7 +11,7 @@
   const markDone = i => { done.add(i); store.set('done', [...done]); };
 
   document.title = C.siteTitle || document.title;
-  $$('[data-her]').forEach(e => (e.textContent = C.herName));
+  $$('[data-her]').forEach(e => (e.textContent = C.hubNick));
   $('[data-intro]').textContent = C.introText;
   $('[data-hub]').textContent = C.hubText;
   if (location.hash) history.replaceState(null, '', location.pathname + location.search);
@@ -169,7 +169,7 @@
       await env.animate([{ opacity: 1 }, { opacity: 0, transform: 'translateY(40px) scale(.9)' }], { duration: 380, fill: 'forwards', easing: 'ease-in' }).finished;
       env.remove();
       const text = h('div', { class: 'letter-body' }), sign = h('p', { class: 'letter-sign' }, C.signature);
-      const letter = h('article', { class: 'letter' }, h('p', { class: 'letter-to' }, C.letterGreeting.replace('{name}', C.herName)), text, sign);
+      const letter = h('article', { class: 'letter' }, h('p', { class: 'letter-to' }, C.nicknames[i % C.nicknames.length] + ','), text, sign);
       wrap.append(letter);
       letter.animate([{ opacity: 0, transform: 'translateY(40px) scale(.95) rotate(-3deg)' }, { opacity: 1, transform: 'none' }], { duration: 900, easing: 'cubic-bezier(.22,1,.36,1)' });
       await typewrite(text, C.days[i].letter);
